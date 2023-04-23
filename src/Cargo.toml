@@ -1,0 +1,7 @@
+[package]
+name = "logconvert.irccloud-to-weechat"
+version = "0.1.0"
+authors = ["apple-fritter <applefritter.git@gmail.com>"]
+
+[dependencies]
+zip = "0.5.7"
