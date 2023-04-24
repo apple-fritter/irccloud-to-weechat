@@ -1,5 +1,5 @@
-# logconvert.irccloud-to-weechat
-This program demonstrates how Rust can be used to work with files and archives, parse data, and write data to files. In this implementation, we use Rust to convert an `IRCCloud` log export to `weechat` log format.
+# irccloud-to-weechat
+This program demonstrates how Rust can be used to work with files and archives, parse data, and write data to files. In this implementation, we use Rust to convert an `IRCCloud` log export to `Weechat` log format.
 
 I have also formed a program to convert IRCCloud logs to the [X-Chat](https://github.com/apple-fritter/logconvert.irccloud-to-xchat) format.
 
