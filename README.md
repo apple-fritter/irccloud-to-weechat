@@ -21,24 +21,23 @@ The program then iterates over the lines of the file using the `lines()` method 
 4. File extension handling: The program only looks for files with the ".txt" extension and skips any other files in the archive. This might not be sufficient if there are other kinds of files in the archive that need to be processed.
 5. Encoding handling: The program assumes that the input files are encoded in UTF-8, which might not always be the case. It might be worth adding support for different encodings or detecting the encoding of the input files automatically.
 
-## Other IRC related repositories:
+## IRC Meta:
 
-#### WeeChat
+### WeeChat
 - [weechat.ban-evasion-detection](https://github.com/apple-fritter/weechat.ban-evasion-detection): Detect and prevent ban evasion. Python.
 - [weechat.typo-aggregator](https://github.com/apple-fritter/weechat.typo-aggregator): Records misspelled words in a TSV (tab-separated values) file. Python.
 - [weechat.whois-aggregator](https://github.com/apple-fritter/weechat.whois-aggregator): Aggregate whois data in a rolling CSV file. Python.
 - [weechat.youtube-info](https://github.com/apple-fritter/weechat.youtube-info): Extract video information from a YouTube URL and post it back to the channel. Python.
 
-#### IRCcloud
+### IRCcloud
 - [irccloud-to-weechat](https://github.com/apple-fritter/irccloud-to-weechat): Convert IRC logs from the IRCcloud format to the Weechat format. Rust.
 - [irccloud-to-xchat](https://github.com/apple-fritter/irccloud-to-xchat): Convert IRC logs from the IRCcloud format to the XChat format. Rust.
 
-#### X-Chat
+### X-Chat
 - [xchat.channel-moderation](https://github.com/apple-fritter/xchat.channel-moderation): Moderate an IRC channel. Python.
 - [doppelganger](https://github.com/apple-fritter/doppelganger): X-Chat mIRC imposter. Fingerprint subversion. Python bundle.
 
-#### IRC General
-
+### Other:
 - [driftwood](https://github.com/apple-fritter/driftwood): A unified IRC log format defined. Written in Rust.
 
 ## [Disclaimer](DISCLAIMER)
