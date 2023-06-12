@@ -1,25 +1,77 @@
 # irccloud-to-weechat
+
 This program demonstrates how Rust can be used to work with files and archives, parse data, and write data to files. In this implementation, we use Rust to convert an `IRCCloud` log export to `Weechat` log format.
 
-I have also formed a program to convert IRCCloud logs to the [X-Chat](https://github.com/apple-fritter/logconvert.irccloud-to-xchat) format.
-
 ## How it works
+
 This Rust program reads the contents of a zip file called `irccloud_logs.zip` and extracts text files with the `.txt` extension. It then processes the contents of each file, parsing the lines and extracting relevant information. The program then creates a new file in the same directory as the original file, with a ".weechatlog" extension, containing the parsed information.
 
-The program uses several Rust standard library modules, including `std::fs`, `std::io`, and `std::path`, as well as the `zip` crate for working with zip files.
+The program uses several Rust standard library modules, including `std::env`, `std::fs`, `std::io`, and `std::path`, as well as the `zip` crate for working with zip files.
 
 The `main()` function opens the zip file using `File::open()` and creates a `ZipArchive` object from the opened file. It then iterates over the files in the archive using a `for` loop and the `archive.len()` method.
 
-For each file, the program uses the `by_index()` method of the ZipArchive object to obtain a file handle, which is then used to create a `BufReader` to read the contents of the file. The program then creates a new file with a name that matches the original file, but with a `.weechatlog` extension, using the File::create() method.
+For each file, the program uses the `by_index()` method of the `ZipArchive` object to obtain a file handle, which is then used to create a `BufReader` to read the contents of the file. The program then creates a new file with a name that matches the original file, but with a `.weechatlog` extension, using the `File::create()` method.
 
-The program then iterates over the lines of the file using the `lines()` method of the BufReader. For each line, the program splits the line into three parts using the `splitn()` method of the str type. If the line does not contain enough information, the program skips it. Otherwise, the program extracts the `timestamp` and `message` from the line and formats them into a string. The formatted message is then written to the output file using the `writeln!()` macro.
+The program then iterates over the lines of the file using the `lines()` method of the `BufReader`. For each line, the program splits the line into three parts using the `splitn()` method of the `str` type. If the line does not contain enough information, the program skips it. Otherwise, the program extracts the `timestamp` and `message` from the line and formats them into a string. The formatted message is then written to the output file using the `writeln!()` macro.
 
 ## Concerns
-1. Error handling: While the program does use unwrap() in several places to simplify the code, this can cause the program to panic if an error occurs. It might be better to use Result and match statements to handle errors in a more controlled way.
+
+1. Error handling: While the program does use `unwrap()` in several places to simplify the code, this can cause the program to panic if an error occurs. It might be better to use `Result` and `match` statements to handle errors in a more controlled way.
 2. Performance: Depending on the size and number of files in the zip archive, this program might be slow or use a lot of memory. It might be worth optimizing the program to handle larger archives or implementing some kind of parallel processing.
 3. File path handling: The program assumes that the input zip file is located in the current directory and that the output files should be written to the same directory. This might not always be the case, and the program might fail if it encounters unexpected file paths.
 4. File extension handling: The program only looks for files with the ".txt" extension and skips any other files in the archive. This might not be sufficient if there are other kinds of files in the archive that need to be processed.
 5. Encoding handling: The program assumes that the input files are encoded in UTF-8, which might not always be the case. It might be worth adding support for different encodings or detecting the encoding of the input files automatically.
+
+## Usage
+
+To use the program, provide the input zip file as a command-line argument:
+
+```shell
+$ irccloud-to-weechat <input_zip>
+```
+
+> The program will process the files in the zip archive and generate corresponding Weechat log files with the .weechatlog extension.
+
+## Flowchart
+```
+┌─ Start Program
+│
+├─ Extract Input Zip File Path
+│
+├─ Open Zip Archive
+│   ├─ Check If Archive Can Be Opened
+│   │   ├─ Archive Opened Successfully
+│   │   └─ Failed to Open Archive
+│   │
+├─ Process Each File in Archive
+│   ├─ Iterate Over Files
+│   │   ├─ File Found
+│   │   │   ├─ Extract File Name and Extension
+│   │   │   ├─ Create Output File Path
+│   │   │   │   └─ Append ".weechatlog" Extension
+│   │   │   │
+│   │   │   ├─ Create Output File
+│   │   │   │   ├─ Output File Created Successfully
+│   │   │   │   └─ Failed to Create Output File
+│   │   │   │       └─ Display Error Message
+│   │   │   │
+│   │   │   └─ Read File Contents
+│   │   │       ├─ Line Found
+│   │   │       │   ├─ Parse Line
+│   │   │       │   │   ├─ Line Parsed Successfully
+│   │   │       │   │   └─ Invalid Line
+│   │   │       │   │       └─ Skip Line
+│   │   │       │   │
+│   │   │       │   └─ Line Not Found
+│   │   │       │
+│   │   │       └─ No More Lines
+│   │   │
+│   │   └─ No More Files
+│   │
+│   └─ No More Files
+│
+└─ End Program
+```
 
 ## IRC Meta
 
