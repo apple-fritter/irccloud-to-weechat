@@ -2,7 +2,7 @@
 
 This program demonstrates how Rust can be used to work with files and archives, parse data, and write data to files. In this implementation, we use Rust to convert an `IRCCloud` log export to `Weechat` log format.
 
---
+---
 
 ## How it works
 
